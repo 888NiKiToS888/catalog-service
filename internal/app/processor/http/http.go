@@ -38,7 +38,7 @@ func NewHttp(hHealth rhandler.Health, cfg section.ProcessorWebServer) *httpProc 
 
 	p := httpProc{addr: fmt.Sprintf(":%d", cfg.ListenPort)}
 	p.server.Addr = p.addr
-	p.server.Handler = r // Теперь r доступен и код скомпилируется
+	p.server.Handler = r
 
 	return &p
 }
