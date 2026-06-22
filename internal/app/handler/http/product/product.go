@@ -106,7 +106,7 @@ func (h *handler) Update(w http.ResponseWriter, r *http.Request) {
 		case errors.Is(err, entity.ErrAlreadyExists):
 			httph.ErrorApply(w, http.StatusBadRequest, err.Error())
 		default:
-			httph.ErrorApply(w, http.StatusInternalServerError, entity.ErrIncorrectParameters.Error())
+			httph.ErrorApply(w, http.StatusInternalServerError, err.Error())
 		}
 		return
 	}
