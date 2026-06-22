@@ -1,7 +1,7 @@
 package httph
 
 import (
-	"encoding/json"
+	"bytes"
 	"net/http"
 )
 
@@ -19,13 +19,13 @@ func SendEmpty(w http.ResponseWriter, statusCode int) {
 	SendRaw(w, statusCode, "", nil)
 }
 
-func SendEncodedWithMIME(w http.ResponseWriter, r *http.Request, statusCode int, mimetype string, obj any) {
-	data, err := json.Marshal(obj)
-	if err != nil {
+func SendEncodedWithMIME(w http.ResponseWriter, r *http.Request, statusCode int, mimeType string, obj any) {
+	buf := &bytes.Buffer{}
+	if err := EncodeJSON(buf, obj); err != nil {
 		ErrorApply(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	SendRaw(w, statusCode, mimetype, data)
+	SendRaw(w, statusCode, mimeType, buf.Bytes())
 }
 
 func SendEncoded(w http.ResponseWriter, r *http.Request, statusCode int, obj any) {

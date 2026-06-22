@@ -25,7 +25,7 @@ func NewHandler(svcCategory service.Category) rhandler.Category {
 func (h *handler) Create(w http.ResponseWriter, r *http.Request) {
 	var req entity.RequestCategoryCreate
 	if err := binding.ScanAndValidateJSON(r, &req); err != nil {
-		httph.ErrorApply(w, http.StatusBadRequest, err.Error())
+		httph.ErrorApply(w, http.StatusBadRequest, entity.ErrIncorrectParameters.Error())
 		return
 	}
 
@@ -86,7 +86,7 @@ func (h *handler) Update(w http.ResponseWriter, r *http.Request) {
 
 	var req entity.RequestCategoryUpdate
 	if err := binding.ScanAndValidateJSON(r, &req); err != nil {
-		httph.ErrorApply(w, http.StatusBadRequest, err.Error())
+		httph.ErrorApply(w, http.StatusBadRequest, entity.ErrIncorrectParameters.Error())
 		return
 	}
 

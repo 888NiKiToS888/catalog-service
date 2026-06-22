@@ -5,7 +5,7 @@ import "net/http"
 const (
 	MIMEJSON              = "application/json"
 	MIMEPOSTForm          = "application/x-www-form-urlencoded"
-	MIMEMultipartPOSTFrom = "multipart/form-data"
+	MIMEMultipartPOSTForm = "multipart/form-data"
 )
 
 type Binding interface {

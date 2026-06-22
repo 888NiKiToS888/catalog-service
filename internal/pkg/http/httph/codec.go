@@ -2,10 +2,11 @@ package httph
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 )
 
-func EncodeJSON(w http.ResponseWriter, data interface{}) error {
+func EncodeJSON(w io.Writer, data interface{}) error {
 	return json.NewEncoder(w).Encode(data)
 }
 
